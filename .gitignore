@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 /Mod Bot/App.Secret.config
 /Mod Bot/App.Secret.config
+/ModBot.Core/App.Secret.config

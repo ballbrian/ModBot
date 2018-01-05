@@ -9,6 +9,7 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
+using ModBot.Core.Services;
 using Mod_Bot.Commands;
 using Mod_Bot.Services;
 
@@ -16,16 +17,12 @@ namespace Mod_Bot
 {
     class Program
     {
-        private ModBotClient _client;
         public static IServiceProvider Services;
 
         static void Main(string[] args) => new Program().StartAsync().GetAwaiter().GetResult();
 
         private async Task StartAsync()
         {          
-
-//            var client = new ModBotClient();
-//            await client.Initialize();
 
             //Register Dependecies
             ConfigureServiceProvider();
@@ -42,8 +39,10 @@ namespace Mod_Bot
             Services = new ServiceCollection()
                 .AddSingleton<IClient, ModBotClient>()
                 .AddSingleton<IRoleService, RoleService>()
+                .AddSingleton<ITributeService, TributeService>()
                 .AddSingleton<ICommandService, ModBodCommandService>()
-                .AddSingleton<IModCommand, ChatDutyCommand>()
+                .AddSingleton<ICommandReplyService, ModCommandReplyService>()
+                .AddSingleton<ITributeCommandReplyService, TributeCommandReplyService>()
                 .BuildServiceProvider();
         }
     }
