@@ -22,7 +22,7 @@ namespace Mod_Bot
         }
 
         public async Task Initialize()
-        {
+        {        
             var token = ConfigurationManager.AppSettings.Get("discordToken");
 
             await LoginAsync(TokenType.Bot, token);

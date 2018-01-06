@@ -30,6 +30,12 @@ namespace ModBot.Core.Services
             }
         }
 
+        public string SetTributesResponse(string tributes)
+        {
+            var tributesSplit = tributes.Split('/');
+            return tributesSplit.Length == 2 ? SetTributesResponse(tributesSplit[0], tributesSplit[1]) : $"Tributes need to be seperated with a \"/\" example: \"Tribute1/Tribute2\"";
+        }
+
         public string GetTributesResponse()
         {
             var tributes = _tributeService.GetTributes();
@@ -55,11 +61,12 @@ namespace ModBot.Core.Services
 
         string SetTributesResponse(string tribute1, string tribute2);
 
+        string SetTributesResponse(string tributes);
+
         string GetTributesResponse();
 
         string PurgeTributesResponse();
 
-        string GrantRedemptionRoundResponse();
-
+        string GrantRedemptionRoundResponse();        
     }
 }

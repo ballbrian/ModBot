@@ -19,6 +19,12 @@ namespace ModBot.Core.Commands
         }
 
         [Command]
+        public async Task HandleSetTributesCommand(string tributes)
+        {
+            await ReplyAsync(_tributeCommandReplyService.SetTributesResponse(tributes));
+        }
+
+        [Command]
         public async Task HandleSetTributesCommand(string tribute1, string tribute2)
         {
             await ReplyAsync(_tributeCommandReplyService.SetTributesResponse(tribute1, tribute2));
