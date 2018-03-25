@@ -38,12 +38,6 @@ namespace ModBot.Core.Services
             return tributesSplit.Length == 2 ? SetTributesResponse(tributesSplit[0], tributesSplit[1]) : $"Tributes need to be seperated with a \"/\" example: \"Tribute1/Tribute2\"";
         }
 
-        public string SetTributesResponse(string tributes)
-        {
-            var tributesSplit = tributes.Split('/');
-            return tributesSplit.Length == 2 ? SetTributesResponse(tributesSplit[0], tributesSplit[1]) : $"Tributes need to be seperated with a \"/\" example: \"Tribute1/Tribute2\"";
-        }
-
         public string GetTributesResponse()
         {
             var tributes = _tributeService.GetTributes();
