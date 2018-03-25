@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
+using Discord.Net.Providers.WS4Net;
 using Discord.WebSocket;
 using Mod_Bot.Services;
 
@@ -12,7 +13,7 @@ namespace Mod_Bot
     {
         private readonly ICommandService _commandService;
 
-        public ModBotClient(ICommandService commandService)
+        public ModBotClient(ICommandService commandService) : base(new DiscordSocketConfig() {WebSocketProvider = WS4NetProvider.Instance})
         {
             _commandService = commandService;
 
