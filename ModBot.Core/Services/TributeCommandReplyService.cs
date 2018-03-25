@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Mod_Bot.Services;
 
 namespace ModBot.Core.Services
@@ -23,11 +20,22 @@ namespace ModBot.Core.Services
             {
                 return GetTributesResponse();
             }
-            else
+            var tributeMods = _roleService.GetMods(ModType.Tributes);
+            return tributeMods.Count > 0 ? $"{string.Join("", tributeMods.Select(u => u.Mention))} Please Remove Tributes!" : "Please Remove Tributes!";
+        }
+
+        public string SetTributesResponse(string tributes)
+        {
+            if (string.CompareOrdinal(tributes, "purge") == 0)
             {
-                var tributeMods = _roleService.GetMods(ModType.Tributes);
-                return tributeMods.Count > 0 ? $"{string.Join("", tributeMods.Select(u => u.Mention))} Please Remove Tributes!" : "Please Remove Tributes!";
+                return PurgeTributesResponse();
             }
+            if (string.CompareOrdinal(tributes, "rr") == 0)
+            {
+                return GrantRedemptionRoundResponse();
+            }
+            var tributesSplit = tributes.Split('/');
+            return tributesSplit.Length == 2 ? SetTributesResponse(tributesSplit[0], tributesSplit[1]) : $"Tributes need to be seperated with a \"/\" example: \"Tribute1/Tribute2\"";
         }
 
         public string SetTributesResponse(string tributes)
