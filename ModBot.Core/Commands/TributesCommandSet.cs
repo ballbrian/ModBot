@@ -8,7 +8,7 @@ using Mod_Bot.Commands;
 
 namespace ModBot.Core.Commands
 {
-    [Group("tribute")]
+    [Group("tribgrats")]
     public class TributesCommandSet : ModuleBase<SocketCommandContext>
     {
         private readonly ITributeCommandReplyService _tributeCommandReplyService;
