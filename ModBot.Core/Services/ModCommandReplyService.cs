@@ -38,7 +38,7 @@ namespace ModBot.Core.Services
                     var chatMods = _roleService.GetMods(ModType.ChatDuty);
                     if (chatMods.Count > 0)
                     {
-                        modDisplay.AppendLine($"Chat Duty:\n{string.Join("\n", chatMods.Select(x => x.Username))}");
+                        modDisplay.AppendLine($"Chat Duty:\n{string.Join("\n", chatMods.Select(x => x.Username))}\n");
                     }
                 }
 
@@ -48,7 +48,7 @@ namespace ModBot.Core.Services
                     if (tributeMods.Count > 0)
                     {
                         modDisplay.AppendLine(
-                            $"Tributes Duty:\n{string.Join("\n", tributeMods.Select(x => x.Username))}");
+                            $"Tributes Duty:\n{string.Join("\n", tributeMods.Select(x => x.Username))}\n");
                     }
                 }
 
@@ -58,7 +58,17 @@ namespace ModBot.Core.Services
                     if (countersDuty.Count > 0)
                     {
                         modDisplay.AppendLine(
-                            $"Counters Duty:\n{string.Join("\n", countersDuty.Select(x => x.Username))}");
+                            $"Counters Duty:\n{string.Join("\n", countersDuty.Select(x => x.Username))}\n");
+                    }
+                }
+
+                if (modType == ModType.PRDuty || modType == ModType.ModDuty)
+                {
+                    var prduty = _roleService.GetMods(ModType.PRDuty);
+                    if (prduty.Count > 0)
+                    {
+                        modDisplay.AppendLine(
+                            $"PR Duty:\n{string.Join("\n", prduty.Select(x => x.Username))}\n");
                     }
                 }
 
@@ -72,7 +82,7 @@ namespace ModBot.Core.Services
 
         public string PurgeModsResponse(ModType modType)
         {
-            return _roleService.PurgeMods(modType) ? "The Purge is Complete <:ksalute:311537363429883904>" : $"Something went wrong - Purging is not legal";
+            return _roleService.PurgeMods(modType) ? "The Purge is Complete <:ksalute:391590750279958528>" : $"Something went wrong - Purging is not legal";
         }
     }
 }
