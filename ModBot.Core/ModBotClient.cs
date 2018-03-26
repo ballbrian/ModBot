@@ -13,7 +13,7 @@ namespace Mod_Bot
     {
         private readonly ICommandService _commandService;
 
-        public ModBotClient(ICommandService commandService) : base(new DiscordSocketConfig() {WebSocketProvider = WS4NetProvider.Instance})
+        public ModBotClient(ICommandService commandService) // : base(new DiscordSocketConfig() {WebSocketProvider = WS4NetProvider.Instance})
         {
             _commandService = commandService;
 
