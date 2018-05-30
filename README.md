@@ -6,7 +6,7 @@
 
 A discord bot for handling Mod Duties and stream activities for the streamer Kabby 
 
-![mixer.com/Kabby](https://mixer.com/Kabby)
+[mixer.com/Kabby](https://mixer.com/Kabby)
 
 ## Commands
 
