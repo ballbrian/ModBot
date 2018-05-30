@@ -2,15 +2,15 @@
 
 ![Build status](https://ci.appveyor.com/api/projects/status/github/ballbrian/ModBot)
 
-#### Description
+## Description
 
 A discord bot for handling Mod Duties and stream activities for the streamer Kabby 
 
 ![mixer.com/Kabby](https://mixer.com/Kabby)
 
-#### Commands
+## Commands
 
-###### Mod Duty
+##### Mod Duty
 
 !modduty - Display All Duties and the Mod Users assigned to each one (Tributes, PR, Chat, and Counters)
 &nbsp;&nbsp;&nbsp;&nbsp;purge - Purges All Mod Users from All Mod Duties
@@ -35,7 +35,7 @@ A discord bot for handling Mod Duties and stream activities for the streamer Kab
 &nbsp;&nbsp;&nbsp;&nbsp;remove $Mod User$ - Remove Mod User from Counters Duty
 &nbsp;&nbsp;&nbsp;&nbsp;purge - Purge All Mod Users From Counters Duty
 
-#### Stream Activities
+##### Stream Activities
 
 !tribute - Display Current Tributes for Round
 &nbsp;&nbsp;&nbsp;&nbsp;$Tribute1$ $Tribute2$
