@@ -43,6 +43,7 @@ namespace Mod_Bot
                 .AddSingleton<ICommandService, ModBodCommandService>()
                 .AddSingleton<ICommandReplyService, ModCommandReplyService>()
                 .AddSingleton<ITributeCommandReplyService, TributeCommandReplyService>()
+                .AddSingleton<IRedemptionCommandReplyService, RedemptionCommandReplyService>()
                 .BuildServiceProvider();
         }
     }

@@ -15,7 +15,11 @@ namespace ModBot.Core.Services
 
         bool GrantRedemption();
 
+        bool GrantKabbyKommandment();
+
         bool RedemptionRound { get; }
+
+        bool KabbyKommandment { get; }
 
     }
 }

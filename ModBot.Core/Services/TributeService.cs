@@ -24,7 +24,7 @@ namespace ModBot.Core.Services
             {
                 _tributes.Add(tribute1);
                 _tributes.Add(tribute2);
-                RedemptionRound = false;
+                RedemptionRound = KabbyKommandment = false;
                 return true;
             }
             else
@@ -53,9 +53,24 @@ namespace ModBot.Core.Services
 
         public bool GrantRedemption()
         {
+            if (KabbyKommandment)
+            {
+                return false;
+            }
             return RedemptionRound = true;
         }
 
+        public bool GrantKabbyKommandment()
+        {
+            if (RedemptionRound)
+            {
+                return false;
+            }
+            return KabbyKommandment = true;
+        }
+
         public bool RedemptionRound { get; private set; }
+
+        public bool KabbyKommandment { get; private set; }
     }
 }

@@ -30,10 +30,6 @@ namespace ModBot.Core.Services
             {
                 return PurgeTributesResponse();
             }
-            if (string.CompareOrdinal(tributes, "rr") == 0)
-            {
-                return GrantRedemptionRoundResponse();
-            }
             var tributesSplit = tributes.Split('/');
             return tributesSplit.Length == 2 ? SetTributesResponse(tributesSplit[0], tributesSplit[1]) : $"Tributes need to be seperated with a \"/\" example: \"Tribute1/Tribute2\"";
         }
@@ -41,19 +37,32 @@ namespace ModBot.Core.Services
         public string GetTributesResponse()
         {
             var tributes = _tributeService.GetTributes();
-            var rr = _tributeService.RedemptionRound ? "Redemption" : "1st Round";
-            return $"Tributes ({rr}):\n {string.Join(" / ", tributes)}";
+
+            if (tributes.Count == 0)
+            {
+                return "Please Add Tributes";
+            }
+
+            var tributeStatus = "1st Round";
+
+            if (_tributeService.RedemptionRound)
+            {
+                tributeStatus = "Redemption";
+            }
+            else
+            {
+                if (_tributeService.KabbyKommandment)
+                {
+                    tributeStatus = "Kabby Kommandment";
+                }
+            }
+
+            return $"Tributes ({tributeStatus}):\n {string.Join(" / ", tributes)}";
         }
 
         public string PurgeTributesResponse()
         {
             return _tributeService.PurgeTributes() ? "Tributes Cleared" : "Something went wrong #blameNinjaWolf";
-        }
-
-        public string GrantRedemptionRoundResponse()
-        {
-            _tributeService.GrantRedemption();
-            return "Redemption Round Granted";
         }
 
     }
@@ -68,7 +77,6 @@ namespace ModBot.Core.Services
         string GetTributesResponse();
 
         string PurgeTributesResponse();
-
-        string GrantRedemptionRoundResponse();        
+ 
     }
 }

@@ -8,7 +8,7 @@ using Mod_Bot.Commands;
 
 namespace ModBot.Core.Commands
 {
-    [Group("tribgrats")]
+    [Group("tribute")]
     public class TributesCommandSet : ModuleBase<SocketCommandContext>
     {
         private readonly ITributeCommandReplyService _tributeCommandReplyService;
@@ -40,12 +40,6 @@ namespace ModBot.Core.Commands
         public async Task HandlePurgeTributesCommand()
         {
             await ReplyAsync(_tributeCommandReplyService.PurgeTributesResponse());
-        }
-
-        [Command("rr")]
-        public async Task HandleGrantRedemptionCommand()
-        {
-            await ReplyAsync(_tributeCommandReplyService.GrantRedemptionRoundResponse());
         }
 
     }
