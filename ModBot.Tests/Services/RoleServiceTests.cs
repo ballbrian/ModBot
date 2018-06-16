@@ -16,6 +16,8 @@ namespace ModBot.Tests.Services
         [DataRow(ModType.ChatDuty)]
         [DataRow(ModType.Tributes)]
         [DataRow(ModType.Counters)]
+        [DataRow(ModType.PRDuty)]
+        [DataRow(ModType.Bets)]
         public void AddMod_AddUserWithSpecificModType_ReturnTrue(ModType modType)
         {
             var user = new Mock<IGuildUser>();
@@ -40,6 +42,8 @@ namespace ModBot.Tests.Services
         [DataRow(ModType.ChatDuty)]
         [DataRow(ModType.Tributes)]
         [DataRow(ModType.Counters)]
+        [DataRow(ModType.PRDuty)]
+        [DataRow(ModType.Bets)]
         public void RemoveMod_AddUserWithSpecificModType_ReturnTrue(ModType modType)
         {
             var user = new Mock<IGuildUser>();
@@ -90,6 +94,8 @@ namespace ModBot.Tests.Services
         [DataRow(ModType.ChatDuty)]
         [DataRow(ModType.Tributes)]
         [DataRow(ModType.Counters)]
+        [DataRow(ModType.PRDuty)]
+        [DataRow(ModType.Bets)]
         public void DisplayMods_DisplayModsForSpecificRoleWithAtLeastOneMod_ReturnListOfOneModForModRole(ModType modType)
         {
             var user = new Mock<IGuildUser>();
@@ -109,6 +115,8 @@ namespace ModBot.Tests.Services
         [DataRow(ModType.ChatDuty)]
         [DataRow(ModType.Tributes)]
         [DataRow(ModType.Counters)]
+        [DataRow(ModType.PRDuty)]
+        [DataRow(ModType.Bets)]
         public void DisplayMods_DisplayModsForSpecificRoleWithTwoMods_ReturnListOfTwoModsForModRole(ModType modType)
         {
             var user1 = new Mock<IGuildUser>();
@@ -130,6 +138,8 @@ namespace ModBot.Tests.Services
         [DataRow(ModType.ChatDuty)]
         [DataRow(ModType.Tributes)]
         [DataRow(ModType.Counters)]
+        [DataRow(ModType.PRDuty)]
+        [DataRow(ModType.Bets)]
         public void PurgeMods_PurgeModsForSpecificRoleWithOneMods_ReturnTrue(ModType modType)
         {
             var user = new Mock<IGuildUser>();
@@ -152,6 +162,8 @@ namespace ModBot.Tests.Services
         [DataRow(ModType.ChatDuty)]
         [DataRow(ModType.Tributes)]
         [DataRow(ModType.Counters)]
+        [DataRow(ModType.PRDuty)]
+        [DataRow(ModType.Bets)]
         public void PurgeMods_PurgeModsForSpecificRoleWithTwoMods_ReturnTrue(ModType modType)
         {
             var user1 = new Mock<IGuildUser>();

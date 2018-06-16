@@ -72,6 +72,16 @@ namespace ModBot.Core.Services
                     }
                 }
 
+                if (modType == ModType.Bets || modType == ModType.ModDuty)
+                {
+                    var betsDuty = _roleService.GetMods(ModType.Bets);
+                    if (betsDuty.Count > 0)
+                    {
+                        modDisplay.AppendLine(
+                            $"Bets Duty:\n{string.Join("\n", betsDuty.Select(x => x.Username))}\n");
+                    }
+                }
+
                 return modDisplay.Length > 0 ? modDisplay.ToString() : $"No Mods have been added for this.";
             }
             catch (Exception ex)

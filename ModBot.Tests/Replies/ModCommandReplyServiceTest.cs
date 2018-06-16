@@ -18,6 +18,8 @@ namespace ModBot.Tests.Replies
         [DataRow(ModType.ChatDuty)]
         [DataRow(ModType.Tributes)]
         [DataRow(ModType.Counters)]
+        [DataRow(ModType.PRDuty)]
+        [DataRow(ModType.Bets)]
         public void AddModResponse_AddModToDuty_ReturnSuccessMessage(ModType modType)
         {
             var user = new Mock<IGuildUser>();
@@ -41,6 +43,8 @@ namespace ModBot.Tests.Replies
         [DataRow(ModType.ChatDuty)]
         [DataRow(ModType.Tributes)]
         [DataRow(ModType.Counters)]
+        [DataRow(ModType.PRDuty)]
+        [DataRow(ModType.Bets)]
         public void AddModResponse_AddModToDuty_ReturnErrorMessage(ModType modType)
         {
             var user = new Mock<IGuildUser>();
@@ -64,6 +68,8 @@ namespace ModBot.Tests.Replies
         [DataRow(ModType.ChatDuty)]
         [DataRow(ModType.Tributes)]
         [DataRow(ModType.Counters)]
+        [DataRow(ModType.PRDuty)]
+        [DataRow(ModType.Bets)]
         public void RemoveModResponse_RemoveModToDuty_ReturnErrorMessage(ModType modType)
         {
             var user = new Mock<IGuildUser>();
@@ -87,6 +93,8 @@ namespace ModBot.Tests.Replies
         [DataRow(ModType.ChatDuty)]
         [DataRow(ModType.Tributes)]
         [DataRow(ModType.Counters)]
+        [DataRow(ModType.PRDuty)]
+        [DataRow(ModType.Bets)]
         public void DisplayModResponse_DisplayModsForDuty_ReturnModsForTypeMessage(ModType modType)
         {
             var user1 = new Mock<IGuildUser>();
@@ -103,18 +111,24 @@ namespace ModBot.Tests.Replies
             var modTypeString = "";
             switch (modType)
             {
-                    case ModType.ChatDuty:
-                        modTypeString = "Chat Duty";
-                        break;
-                    case ModType.Tributes:
-                        modTypeString = "Tributes Duty";
-                        break;
+                case ModType.ChatDuty:
+                    modTypeString = "Chat Duty";
+                    break;
+                case ModType.Tributes:
+                    modTypeString = "Tributes Duty";
+                    break;
                 case ModType.Counters:
                     modTypeString = "Counters Duty";
                     break;
+                case ModType.PRDuty:
+                    modTypeString = "PR Duty";
+                    break;
+                case ModType.Bets:
+                    modTypeString = "Bets Duty";
+                    break;
             }
 
-            var expected = $"{modTypeString}:\n{string.Join("\n", mods.Select(x => x.Username))}\r\n";
+            var expected = $"{modTypeString}:\n{string.Join("\n", mods.Select(x => x.Username))}\n\r\n";
 
             var modCommandReplyService = new ModCommandReplyService(roleService.Object);
 

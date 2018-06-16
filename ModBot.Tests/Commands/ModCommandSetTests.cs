@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ModBot.Core.Commands;
 using ModBot.Core.Services;
 using Mod_Bot.Commands;
 using Moq;
@@ -41,6 +42,18 @@ namespace ModBot.Tests.Commands
             var commandReplyService = new Mock<ICommandReplyService>();
 
             var test = new CountersDutyCommandSet(commandReplyService.Object);
+
+            Assert.AreEqual(modType, test.ModType);
+        }
+
+        [TestMethod]
+        public void Constructor_CreateInstance_ModTypeIsBetsDuty()
+        {
+            var modType = ModType.Bets;
+
+            var commandReplyService = new Mock<ICommandReplyService>();
+
+            var test = new BetsDutyCommandSet(commandReplyService.Object);
 
             Assert.AreEqual(modType, test.ModType);
         }

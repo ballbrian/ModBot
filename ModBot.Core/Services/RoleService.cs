@@ -20,6 +20,7 @@ namespace Mod_Bot.Services
         private List<IGuildUser> _tributeMods;
         private List<IGuildUser> _chatdutyMods;
         private List<IGuildUser> _prMods;
+        private List<IGuildUser> _betsMods;
 
         public RoleService()
         {
@@ -27,6 +28,7 @@ namespace Mod_Bot.Services
             _tributeMods = new List<IGuildUser>();
             _chatdutyMods = new List<IGuildUser>();
             _prMods = new List<IGuildUser>();
+            _betsMods = new List<IGuildUser>();
         }
 
         public bool AddMod(ModType modType, IGuildUser socketUser)
@@ -61,7 +63,12 @@ namespace Mod_Bot.Services
                             _prMods.Add(user);
                         }
                         break;
-
+                    case ModType.Bets:
+                        if (!_betsMods.Contains(user))
+                        {
+                            _betsMods.Add(user);
+                        }
+                        break;
                 }
                 return true;
 
@@ -70,8 +77,6 @@ namespace Mod_Bot.Services
             {
                 return false;
             }
-
-            //            await context.Channel.SendMessageAsync($"Added {user.Username}");
         }
 
         public bool RemoveMod(ModType modType, IGuildUser socketUser)
@@ -87,12 +92,15 @@ namespace Mod_Bot.Services
                     case ModType.ChatDuty:
                         return _chatdutyMods.Remove(socketUser);
                     case ModType.PRDuty:
-                        return _prMods.Remove(socketUser);                        
+                        return _prMods.Remove(socketUser);
+                    case ModType.Bets:
+                        return _betsMods.Remove(socketUser);
                     case ModType.ModDuty:
                         _counterMods.Remove(socketUser);
                         _tributeMods.Remove(socketUser);
                         _chatdutyMods.Remove(socketUser);
                         _prMods.Remove(socketUser);
+                        _betsMods.Remove(socketUser);
                         return true;
                 }
                 return false;
@@ -134,6 +142,12 @@ namespace Mod_Bot.Services
                         list.AddRange(_prMods);
                     }
                     break;
+                case ModType.Bets:
+                    if (_betsMods.Count > 0)
+                    {
+                        list.AddRange(_betsMods);
+                    }
+                    break;
                 case ModType.ModDuty:
                     if (_counterMods.Count > 0)
                     {
@@ -150,6 +164,10 @@ namespace Mod_Bot.Services
                     if (_prMods.Count > 0)
                     {
                         list.AddRange(_prMods);
+                    }
+                    if (_betsMods.Count > 0)
+                    {
+                        list.AddRange(_betsMods);
                     }
                     break;
             }
@@ -176,11 +194,15 @@ namespace Mod_Bot.Services
                     case ModType.PRDuty:
                         _prMods.Clear();
                         break;
+                    case ModType.Bets:
+                        _betsMods.Clear();
+                        break;
                     case ModType.ModDuty:
                         _counterMods.Clear();
                         _tributeMods.Clear();
                         _chatdutyMods.Clear();
                         _prMods.Clear();
+                        _betsMods.Clear();
                         break;
                 }
                 return true;

@@ -4,5 +4,6 @@
             Tributes,
             ChatDuty,
             PRDuty,
-            ModDuty
+            ModDuty,
+            Bets
         }
