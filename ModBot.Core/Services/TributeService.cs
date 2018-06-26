@@ -18,12 +18,14 @@ namespace ModBot.Core.Services
             _tributes = new List<string>();
         }
 
-        public bool SetTributes(string tribute1, string tribute2)
+        public bool SetTributes(params string[] tributes)
         {
             if(_tributes.Count == 0)
             {
-                _tributes.Add(tribute1);
-                _tributes.Add(tribute2);
+                foreach (var tribute in tributes)
+                {
+                    _tributes.Add(tribute);
+                }                
                 RedemptionRound = KabbyKommandment = false;
                 return true;
             }

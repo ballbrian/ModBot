@@ -14,9 +14,9 @@ namespace ModBot.Core.Services
             _roleService = roleService;
         }
 
-        public string SetTributesResponse(string tribute1, string tribute2)
+        public string SetTributesResponse(params string[] tributes)
         {
-            if (_tributeService.SetTributes(tribute1, tribute2))
+            if (_tributeService.SetTributes(tributes))
             {
                 return GetTributesResponse();
             }
@@ -31,7 +31,14 @@ namespace ModBot.Core.Services
                 return PurgeTributesResponse();
             }
             var tributesSplit = tributes.Split('/');
-            return tributesSplit.Length == 2 ? SetTributesResponse(tributesSplit[0], tributesSplit[1]) : $"Tributes need to be seperated with a \"/\" example: \"Tribute1/Tribute2\"";
+
+            if (_tributeService.SetTributes(tributesSplit))
+            {
+                return GetTributesResponse();
+            }
+            var tributeMods = _roleService.GetMods(ModType.Tributes);
+            return tributeMods.Count > 0 ? $"{string.Join("", tributeMods.Select(u => u.Mention))} Please Remove Tributes!" : "Please Remove Tributes!";
+
         }
 
         public string GetTributesResponse()
@@ -69,8 +76,6 @@ namespace ModBot.Core.Services
 
     public interface ITributeCommandReplyService
     {
-
-        string SetTributesResponse(string tribute1, string tribute2);
 
         string SetTributesResponse(string tributes);
 
