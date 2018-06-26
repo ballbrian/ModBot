@@ -19,7 +19,7 @@ namespace ModBot.Core.Commands
         }
 
         [Command]
-        public async Task HandleSetTributesCommand(string tributes)
+        public async Task HandleSetTributesCommand([Remainder] string tributes)
         {
             await ReplyAsync(_tributeCommandReplyService.SetTributesResponse(tributes));
         }
