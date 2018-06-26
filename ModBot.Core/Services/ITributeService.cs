@@ -7,7 +7,7 @@ namespace ModBot.Core.Services
     public interface ITributeService
     {
 
-        bool SetTributes(string tribute1, string tribute2);
+        bool SetTributes(params string[] tributes);
 
         bool PurgeTributes();
 
