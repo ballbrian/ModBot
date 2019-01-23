@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Discord;
 using Discord.WebSocket;
+using ModBot.Core.Extensions;
 using Mod_Bot.Services;
 
 namespace ModBot.Core.Services
@@ -19,12 +20,22 @@ namespace ModBot.Core.Services
 
         public string AddModResponse(ModType modType, IGuildUser socketUser)
         {
-            return _roleService.AddMod(modType, socketUser) ? $"Added {socketUser.Username}" : $"Something went wrong - {socketUser.Username} Not Added";
+            return _roleService.AddMod(modType, socketUser) ? $"Added {socketUser.UserNickname()}" : $"Something went wrong - {socketUser.UserNickname()} Not Added";
         }
 
         public string RemoveModResponse(ModType modType, IGuildUser socketUser)
         {
-            return _roleService.RemoveMod(modType, socketUser) ? $"Removed {socketUser.Username}" : $"Something went wrong - {socketUser.Username} was not removed";
+            try
+            {
+                return _roleService.RemoveMod(modType, socketUser)
+                    ? $"Removed {socketUser.UserNickname()}"
+                    : $"{socketUser.UserNickname()} was not assigned to {modType.ToString()}";
+            }
+            catch (Exception ex)
+            {
+                return $"Something went wrong - {socketUser.UserNickname()} was not removed";
+            }
+            
         }
 
         public string DisplayModsResponse(ModType modType)
@@ -38,7 +49,7 @@ namespace ModBot.Core.Services
                     var chatMods = _roleService.GetMods(ModType.ChatDuty);
                     if (chatMods.Count > 0)
                     {
-                        modDisplay.AppendLine($"Chat Duty:\n{string.Join("\n", chatMods.Select(x => x.Username))}\n");
+                        modDisplay.AppendLine($"Chat Duty:\n{string.Join("\n", chatMods.Select(x => x.UserNickname()))}\n");
                     }
                 }
 
@@ -48,7 +59,7 @@ namespace ModBot.Core.Services
                     if (tributeMods.Count > 0)
                     {
                         modDisplay.AppendLine(
-                            $"Tributes Duty:\n{string.Join("\n", tributeMods.Select(x => x.Username))}\n");
+                            $"Tributes Duty:\n{string.Join("\n", tributeMods.Select(x => x.UserNickname()))}\n");
                     }
                 }
 
@@ -58,7 +69,7 @@ namespace ModBot.Core.Services
                     if (countersDuty.Count > 0)
                     {
                         modDisplay.AppendLine(
-                            $"Counters Duty:\n{string.Join("\n", countersDuty.Select(x => x.Username))}\n");
+                            $"Counters Duty:\n{string.Join("\n", countersDuty.Select(x => x.UserNickname()))}\n");
                     }
                 }
 
@@ -68,7 +79,7 @@ namespace ModBot.Core.Services
                     if (prduty.Count > 0)
                     {
                         modDisplay.AppendLine(
-                            $"PR Duty:\n{string.Join("\n", prduty.Select(x => x.Username))}\n");
+                            $"PR Duty:\n{string.Join("\n", prduty.Select(x => x.UserNickname()))}\n");
                     }
                 }
 
@@ -78,7 +89,7 @@ namespace ModBot.Core.Services
                     if (betsDuty.Count > 0)
                     {
                         modDisplay.AppendLine(
-                            $"Bets Duty:\n{string.Join("\n", betsDuty.Select(x => x.Username))}\n");
+                            $"Bets Duty:\n{string.Join("\n", betsDuty.Select(x => x.UserNickname()))}\n");
                     }
                 }
 
