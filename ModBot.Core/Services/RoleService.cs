@@ -80,35 +80,28 @@ namespace Mod_Bot.Services
         }
 
         public bool RemoveMod(ModType modType, IGuildUser socketUser)
-        {
-            try
-            {               
-                switch (modType)
-                {
-                    case ModType.Counters:
-                        return _counterMods.Remove(socketUser);
-                    case ModType.Tributes:
-                        return _tributeMods.Remove(socketUser);
-                    case ModType.ChatDuty:
-                        return _chatdutyMods.Remove(socketUser);
-                    case ModType.PRDuty:
-                        return _prMods.Remove(socketUser);
-                    case ModType.Bets:
-                        return _betsMods.Remove(socketUser);
-                    case ModType.ModDuty:
-                        _counterMods.Remove(socketUser);
-                        _tributeMods.Remove(socketUser);
-                        _chatdutyMods.Remove(socketUser);
-                        _prMods.Remove(socketUser);
-                        _betsMods.Remove(socketUser);
-                        return true;
-                }
-                return false;
-            }
-            catch (Exception ex)
+        {             
+            switch (modType)
             {
-                return false;
+                case ModType.Counters:
+                    return _counterMods.Remove(socketUser);
+                case ModType.Tributes:
+                    return _tributeMods.Remove(socketUser);
+                case ModType.ChatDuty:
+                    return _chatdutyMods.Remove(socketUser);
+                case ModType.PRDuty:
+                    return _prMods.Remove(socketUser);
+                case ModType.Bets:
+                    return _betsMods.Remove(socketUser);
+                case ModType.ModDuty:
+                    _counterMods.Remove(socketUser);
+                    _tributeMods.Remove(socketUser);
+                    _chatdutyMods.Remove(socketUser);
+                    _prMods.Remove(socketUser);
+                    _betsMods.Remove(socketUser);
+                    return true;
             }
+            return false;
 
         }
 

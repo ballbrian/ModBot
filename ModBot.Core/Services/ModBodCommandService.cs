@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Discord.Commands;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Mod_Bot.Services
 {
@@ -12,7 +13,7 @@ namespace Mod_Bot.Services
     {
         public async Task RegisterModulesAsync()
         {
-            await AddModulesAsync(Assembly.GetEntryAssembly());
+            await AddModulesAsync(Assembly.GetEntryAssembly(), Program.Services);
         }
 
         public async Task<IResult> ExecuteAsync(ICommandContext context, int argPos)

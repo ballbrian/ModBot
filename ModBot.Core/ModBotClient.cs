@@ -53,6 +53,7 @@ namespace Mod_Bot
             var result = await _commandService.ExecuteAsync(context, argPos);
             if (!result.IsSuccess)
             {
+                Console.WriteLine(result.ErrorReason);
 #if DEBUG                
                 await context.Channel.SendMessageAsync(result.ErrorReason);
 #endif
