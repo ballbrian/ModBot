@@ -78,7 +78,7 @@ namespace ModBot.Tests.Replies
             var roleService = new Mock<IRoleService>();
             roleService.Setup(x => x.RemoveMod(modType, user.Object)).Returns(false);
 
-            var expected = $"Something went wrong - {user.Object.Username} was not removed";
+            var expected = $"{user.Object.Username} was not assigned to {modType.ToString()}";
 
             var modCommandReplyService = new ModCommandReplyService(roleService.Object);
 

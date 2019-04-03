@@ -190,7 +190,9 @@ namespace ModBot.Tests.Services
         public void RemoveMod_RemoveUser1FromAllRoles_ReturnTrue(ModType modType)
         {
             var user1 = new Mock<IGuildUser>();
+            user1.Setup(x => x.Id).Returns(01);
             var user2 = new Mock<IGuildUser>();
+            user2.Setup(x => x.Id).Returns(02);
             var test = new RoleService();
 
             test.AddMod(ModType.ChatDuty, user1.Object);
