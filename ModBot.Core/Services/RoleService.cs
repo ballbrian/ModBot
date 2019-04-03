@@ -84,21 +84,21 @@ namespace Mod_Bot.Services
             switch (modType)
             {
                 case ModType.Counters:
-                    return _counterMods.Remove(socketUser);
+                    return _counterMods.RemoveAll(x => x.Id == socketUser.Id) > 0;
                 case ModType.Tributes:
-                    return _tributeMods.Remove(socketUser);
+                    return _tributeMods.RemoveAll(x => x.Id == socketUser.Id) > 0;
                 case ModType.ChatDuty:
-                    return _chatdutyMods.Remove(socketUser);
+                    return _chatdutyMods.RemoveAll(x => x.Id == socketUser.Id) > 0;
                 case ModType.PRDuty:
-                    return _prMods.Remove(socketUser);
+                    return _prMods.RemoveAll(x => x.Id == socketUser.Id) > 0;
                 case ModType.Bets:
-                    return _betsMods.Remove(socketUser);
+                    return _betsMods.RemoveAll(x => x.Id == socketUser.Id) > 0;
                 case ModType.ModDuty:
-                    _counterMods.Remove(socketUser);
-                    _tributeMods.Remove(socketUser);
-                    _chatdutyMods.Remove(socketUser);
-                    _prMods.Remove(socketUser);
-                    _betsMods.Remove(socketUser);
+                    _counterMods.RemoveAll(x => x.Id == socketUser.Id);
+                    _tributeMods.RemoveAll(x => x.Id == socketUser.Id);
+                    _chatdutyMods.RemoveAll(x => x.Id == socketUser.Id);
+                    _prMods.RemoveAll(x => x.Id == socketUser.Id);
+                    _betsMods.RemoveAll(x => x.Id == socketUser.Id);
                     return true;
             }
             return false;
